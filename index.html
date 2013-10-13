@@ -1,0 +1,155 @@
+<!DOCTYPE html>  
+
+<html lang="en">  
+
+<head>
+
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="image_src" href="http://sebpearce.com/code/regex/image_src.jpg" />
+	<meta property="og:title" content="Regex Check"/>
+	<meta property="og:image" content="http://sebpearce.com/code/regex/image_src.jpg"/>
+	<meta property="og:url" content="http://sebpearce.com/code/regex/"/>
+	<meta property="og:site_name" content="sebpearce.com"/>
+	<meta property="og:description" content="A tool for programmers to experiment with regular expressions."/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<link rel="stylesheet" href="meyerweb_css_reset.css" />
+	<link rel="stylesheet" href="style.css" />
+
+<title>Regex Check</title>  
+
+</head>  
+
+<body>
+
+<div id="page-wrapper">
+
+&nbsp;
+
+
+<div id="author">by <a href="http://sebpearce.com">seb pearce</a></div>
+
+<div id="title">regex check</div>
+
+<div id="wrapper">
+
+
+
+
+<div style="display: table;">
+
+	<div class="table-row">
+		<div id="regex-heading">regex</div>
+		<div class="data-box">
+			<input type="text" class="regex-iAnput" id="regex" value="^\w(\w|\.)+@\w+\.\w\w(\w|\.\w\w)?$" onkeyup="processRegex();" />
+		</div>
+	</div>
+
+	<div class="table-row">
+		<div id="string-heading">string</div>
+		<div class="data-box">
+			<input type="text" id="inputstring" value="valid_email@ok.com" onkeyup="processRegex();" />
+		</div>
+	</div>
+
+	<div class="table-row">
+		<div id="match-heading">match</div>
+		<div class="data-box">
+			<span id="match">false</span>
+		</div>
+	</div>
+
+	<div class="table-row">
+		<div id="result-heading">result</div>
+		<div class="data-box">
+			<span id="result"></span>
+		</div>
+	</div>
+
+
+</div>
+
+
+<div id="wtf"><a onclick="toggleMe('explanation');">wtf?</a></div>
+
+<div id="explanation">
+<p>This is a tool for programmers to experiment with <a href="http://en.wikipedia.org/wiki/Regular_expression"><i>regular expressions</i></a>, or <i>regexes</i>.</p>
+<p>You can edit the <i>regex</i> and <i>string</i> fields and see the result immediately.</p>
+<p><i>Match</i> tells you if there is a match,</p>
+<p>and <i>result</i> gives the first array element of <code>string.match(regex)</code>.</p>
+</div>
+
+
+</div>
+
+
+<script>
+
+/*
+
+	Author: Seb Pearce (http://sebpearce.com)
+	Description: A simple tool for experimenting with regular expressions.
+	Date: 2013.08.03
+
+*/
+
+
+function processRegex() {
+
+	var regex = document.getElementById("regex").value;
+
+	if (regex == "") {
+		hideMe("match");
+		hideMe("result");
+		return 0;
+	}
+
+	var string = document.getElementById("inputstring").value;
+
+	regex = new RegExp(regex);
+
+	var result = string.match(regex);
+
+	if (result) {
+		document.getElementById("match").innerHTML = "true";
+		document.getElementById("match").style.color = "#26ba3a";
+		document.getElementById("result").innerHTML = result[0];
+		showMe("match");
+		showMe("result");
+	} else {
+		document.getElementById("match").innerHTML = "false";
+		document.getElementById("match").style.color = "#ce2222";
+		showMe("match");
+		hideMe("result");
+	}
+
+	return 0; 
+}
+
+function showMe(id) {
+	document.getElementById(id).style.display = "block";
+	return 1;
+}
+function hideMe(id) {
+	document.getElementById(id).style.display = "none";
+	return 1;
+}
+function toggleMe(id) {
+	if (document.getElementById(id).style.display != "block") {
+		document.getElementById(id).style.display = "block";
+	}
+	else {
+	document.getElementById(id).style.display = "none";
+	}
+	return 1;
+}
+
+window.onload = function() { processRegex() };
+
+</script>
+
+
+</div> <!--end of 'page-wrapper'-->
+
+</body>
+
+</html>                   
