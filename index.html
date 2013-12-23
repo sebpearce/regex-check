@@ -14,6 +14,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
 	<link rel="stylesheet" href="meyerweb_css_reset.css" />
 	<link rel="stylesheet" href="style.css" />
+	<script type="text/javascript" src="regex.js"></script>
 
 <title>Regex Check</title>  
 
@@ -24,7 +25,6 @@
 <div id="page-wrapper">
 
 &nbsp;
-
 
 <div id="author">by <a href="http://sebpearce.com">seb pearce</a></div>
 
@@ -72,81 +72,13 @@
 <div id="wtf"><a onclick="toggleMe('explanation');">wtf?</a></div>
 
 <div id="explanation">
-<p>This is a tool for programmers to experiment with <a href="http://en.wikipedia.org/wiki/Regular_expression"><i>regular expressions</i></a>, or <i>regexes</i>.</p>
-<p>You can edit the <i>regex</i> and <i>string</i> fields and see the result immediately.</p>
-<p><i>Match</i> tells you if there is a match,</p>
-<p>and <i>result</i> gives the first array element of <code>string.match(regex)</code>.</p>
+	<p>This is a tool for programmers to experiment with <a href="http://en.wikipedia.org/wiki/Regular_expression"><i>regular expressions</i></a>, or <i>regexes</i>.</p>
+	<p>You can edit the <i>regex</i> and <i>string</i> fields and see the result immediately.</p>
+	<p><i>Match</i> tells you if there is a match,</p>
+	<p>and <i>result</i> gives the first array element of <code>string.match(regex)</code>.</p>
 </div>
 
-
-</div>
-
-
-<script>
-
-/*
-
-	Author: Seb Pearce (http://sebpearce.com)
-	Description: A simple tool for experimenting with regular expressions.
-	Date: 2013.08.03
-
-*/
-
-
-function processRegex() {
-
-	var regex = document.getElementById("regex").value;
-
-	if (regex == "") {
-		hideMe("match");
-		hideMe("result");
-		return 0;
-	}
-
-	var string = document.getElementById("inputstring").value;
-
-	regex = new RegExp(regex);
-
-	var result = string.match(regex);
-
-	if (result) {
-		document.getElementById("match").innerHTML = "true";
-		document.getElementById("match").style.color = "#26ba3a";
-		document.getElementById("result").innerHTML = result[0];
-		showMe("match");
-		showMe("result");
-	} else {
-		document.getElementById("match").innerHTML = "false";
-		document.getElementById("match").style.color = "#ce2222";
-		showMe("match");
-		hideMe("result");
-	}
-
-	return 0; 
-}
-
-function showMe(id) {
-	document.getElementById(id).style.display = "block";
-	return 1;
-}
-function hideMe(id) {
-	document.getElementById(id).style.display = "none";
-	return 1;
-}
-function toggleMe(id) {
-	if (document.getElementById(id).style.display != "block") {
-		document.getElementById(id).style.display = "block";
-	}
-	else {
-	document.getElementById(id).style.display = "none";
-	}
-	return 1;
-}
-
-window.onload = function() { processRegex() };
-
-</script>
-
+</div> <!-- end of wtf -->
 
 </div> <!--end of 'page-wrapper'-->
 
